@@ -213,13 +213,26 @@
   }
   .about-stat .lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;font-weight:600;}
   .about-frame{
-    flex:0 0 340px;height:400px;border-radius:24px;
-    border:2.5px solid transparent;
-    background:linear-gradient(#fff,#fff) padding-box,var(--grad) border-box;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 16px 48px rgba(26,122,74,.12);overflow:hidden;position:relative;
+    flex:0 0 360px;border-radius:24px;
+    background:var(--dark);
+    box-shadow:0 16px 48px rgba(26,122,74,.18);overflow:hidden;position:relative;
+    padding:28px 24px 24px;display:flex;flex-direction:column;gap:16px;
   }
-  .about-photo{width:100%;height:100%;object-fit:cover;border-radius:21px;}
+  .svc-showcase-title{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#4B6E55;font-weight:700;font-family:'DM Sans',sans-serif;margin-bottom:4px;}
+  .svc-slide{display:none;flex-direction:column;gap:10px;animation:slideFade .5s ease;}
+  .svc-slide.active{display:flex;}
+  @keyframes slideFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .svc-slide-icon{font-size:2.4rem;}
+  .svc-slide-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#fff;line-height:1.2;}
+  .svc-slide-desc{font-size:.82rem;color:#6B8F76;line-height:1.65;}
+  .svc-slide-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(40,168,101,.15);border:1px solid rgba(40,168,101,.3);color:var(--accent2);padding:5px 14px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.06em;width:fit-content;}
+  .svc-dots{display:flex;gap:6px;margin-top:4px;}
+  .svc-dot{width:6px;height:6px;border-radius:50%;background:#1E3D26;transition:.3s;cursor:pointer;}
+  .svc-dot.active{background:var(--accent2);width:18px;border-radius:4px;}
+  .svc-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;border-top:1px solid #1A3322;padding-top:16px;}
+  .svc-stat-mini{background:#0F2A1A;border-radius:10px;padding:12px;text-align:center;}
+  .svc-stat-mini .n{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+  .svc-stat-mini .l{font-size:.65rem;color:#4B6E55;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;font-weight:600;}
 
   /* ── COUNTDOWN ── */
   #countdown{text-align:center;background:#fff;}
@@ -418,14 +431,7 @@
     <div class="frame-outer">
       <div class="orbital"><div class="orbital-dot"></div></div>
       <div class="frame-corner">TOP RATED</div>
-      <div class="hero-placeholder">
-        <div class="ph-icon">🛍️</div>
-        <div class="ph-badge">SHOPIFY PARTNER</div>
-        <div class="ph-stats">
-          <div class="stat-pill">🚀 <span>200+</span> Stores</div>
-          <div class="stat-pill">⭐ <span>5.0</span> Rating</div>
-        </div>
-      </div>
+      <img src="photo.jpg" alt="Julius Ayomide — HigginsWeb" style="width:100%;height:100%;object-fit:cover;border-radius:25px;display:block;"/>
     </div>
   </div>
 </section>
@@ -456,9 +462,9 @@
 <section id="about">
   <div class="about-text reveal">
     <div class="sec-label">The Expert Behind HigginsWeb</div>
-    <h2 class="sec-title">Your Shopify Growth<br/>Partner</h2>
+    <h2 class="sec-title">The Expert Behind<br/>HigginsWeb</h2>
     <div class="divider"></div>
-    <p>I am a dedicated Shopify expert with deep expertise in building high-converting e-commerce stores from the ground up. From stunning store design to data-driven marketing strategies, I handle every aspect of your Shopify journey.</p>
+    <p><strong>JULIUS AYOMIDE</strong> — I am a dedicated Shopify expert with deep expertise in building high-converting e-commerce stores from the ground up. From stunning store design to data-driven marketing strategies, I handle every aspect of your Shopify journey.</p>
     <p>Whether you're launching your first store or scaling an established brand, I provide end-to-end solutions tailored to your goals. Transparent, results-focused, and built around your success.</p>
     <p>I've helped over 200 entrepreneurs and brands across the globe unlock consistent revenue, lower cart abandonment, and build loyal customer communities through strategic Shopify development and marketing.</p>
     <div class="about-stats">
@@ -469,7 +475,65 @@
     </div>
   </div>
   <div class="about-frame reveal">
-    <img class="about-photo" src="photo.jpg" alt="HigginsWeb Expert"/>
+    <div class="svc-showcase-title">Services I Offer</div>
+
+    <div class="svc-slide active">
+      <div class="svc-slide-icon">🏗️</div>
+      <div class="svc-slide-name">Shopify Store Creation</div>
+      <div class="svc-slide-desc">Complete, conversion-ready stores built from scratch — designed to impress and engineered to sell.</div>
+      <div class="svc-slide-tag">✦ Most Popular</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">📄</div>
+      <div class="svc-slide-name">Product Page Optimization</div>
+      <div class="svc-slide-desc">Persuasive copy, optimised images, and trust signals that skyrocket your conversion rate.</div>
+      <div class="svc-slide-tag">✦ High Impact</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">🔍</div>
+      <div class="svc-slide-name">Winning Product Research</div>
+      <div class="svc-slide-desc">Trending, high-demand products with strong profit margins using advanced research tools.</div>
+      <div class="svc-slide-tag">✦ Data-Driven</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">📣</div>
+      <div class="svc-slide-name">E-Commerce Marketing</div>
+      <div class="svc-slide-desc">Data-driven campaigns across Meta, TikTok & Google that drive real revenue growth.</div>
+      <div class="svc-slide-tag">✦ Results-Focused</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">🔌</div>
+      <div class="svc-slide-name">Shopify App Integration</div>
+      <div class="svc-slide-desc">Upsells, loyalty programs, email automation & reviews — fully configured for you.</div>
+      <div class="svc-slide-tag">✦ Done For You</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">🎨</div>
+      <div class="svc-slide-name">Shopify Redesign</div>
+      <div class="svc-slide-desc">A powerful modern makeover — mobile-first design that looks stunning and converts better.</div>
+      <div class="svc-slide-tag">✦ Modern & Fast</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">📈</div>
+      <div class="svc-slide-name">Shopify SEO</div>
+      <div class="svc-slide-desc">Rank higher on Google with on-page SEO, schema markup, and smart keyword targeting.</div>
+      <div class="svc-slide-tag">✦ Long-Term Growth</div>
+    </div>
+    <div class="svc-slide">
+      <div class="svc-slide-icon">⚙️</div>
+      <div class="svc-slide-name">Store Management</div>
+      <div class="svc-slide-desc">Ongoing management of inventory, orders & updates so you focus on growing your brand.</div>
+      <div class="svc-slide-tag">✦ Hands-Off</div>
+    </div>
+
+    <div class="svc-dots" id="svc-dots"></div>
+
+    <div class="svc-stats-row">
+      <div class="svc-stat-mini"><div class="n">200+</div><div class="l">Stores</div></div>
+      <div class="svc-stat-mini"><div class="n">98%</div><div class="l">Satisfaction</div></div>
+      <div class="svc-stat-mini"><div class="n">5★</div><div class="l">Rating</div></div>
+      <div class="svc-stat-mini"><div class="n">4yr+</div><div class="l">Experience</div></div>
+    </div>
   </div>
 </section>
 
@@ -596,7 +660,7 @@
   </div>
   <div class="footer-bottom">
     <p>© 2025 HigginsWeb. All rights reserved.</p>
-    <span class="footer-badge">⚡ Shopify Partner</span>
+    <span class="footer-badge">HigginsWeb</span>
     <p>juliusademide101@gmail.com</p>
   </div>
 </footer>
@@ -608,6 +672,27 @@ const ro=new IntersectionObserver((entries)=>{
   entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*55);});
 },{threshold:.1});
 reveals.forEach(el=>ro.observe(el));
+
+/* SERVICE SHOWCASE */
+(function(){
+  const slides=document.querySelectorAll('.svc-slide');
+  const dotsWrap=document.getElementById('svc-dots');
+  let cur=0;
+  slides.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='svc-dot'+(i===0?' active':'');
+    d.onclick=()=>goTo(i);
+    dotsWrap.appendChild(d);
+  });
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    dotsWrap.children[cur].classList.remove('active');
+    cur=n;
+    slides[cur].classList.add('active');
+    dotsWrap.children[cur].classList.add('active');
+  }
+  setInterval(()=>goTo((cur+1)%slides.length),3000);
+})();
 
 /* COUNTDOWN */
 function animateCount(el,target){
