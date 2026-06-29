@@ -295,34 +295,45 @@
   /* ── PROJECTS ── */
   #projects{background:#fff;}
   .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
-  .flip-card{perspective:1000px;height:240px;cursor:pointer;}
-  .flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);}
-  .flip-card:hover .flip-inner{transform:rotateY(180deg);}
-  .flip-front,.flip-back{
-    position:absolute;inset:0;border-radius:18px;
-    -webkit-backface-visibility:hidden;backface-visibility:hidden;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:28px;text-align:center;
+  .proj-card{
+    position:relative;border-radius:18px;overflow:hidden;height:240px;cursor:pointer;
+    background:linear-gradient(145deg,#edfbf3 0%,#fff 100%);
+    border:1.5px solid rgba(40,168,101,.22);
+    transition:box-shadow .3s,transform .3s;
   }
-  .flip-front{background:linear-gradient(145deg,#fff 0%,#edfbf3 100%);
-    border:1.5px solid rgba(40,168,101,.22);gap:10px;transition:.3s;position:relative;overflow:hidden;}
-  .flip-front::after{content:'';position:absolute;inset:0;border-radius:18px;
-    background:linear-gradient(180deg,rgba(40,168,101,.10) 0%,transparent 40%,rgba(26,122,74,.20) 100%);
-    opacity:1;transition:.35s;pointer-events:none;}
-  .flip-front:hover{border-color:var(--accent2);}
-  .flip-front:hover::after{background:linear-gradient(180deg,rgba(40,168,101,.22) 0%,transparent 40%,rgba(26,122,74,.32) 100%);}
-  .flip-back{background:linear-gradient(145deg,#0b2418 0%,var(--dark) 100%);
-    color:#fff;transform:rotateY(180deg);gap:10px;
-    border:1.5px solid rgba(40,168,101,.4);position:relative;overflow:hidden;}
-  .flip-back::before{content:'';position:absolute;inset:0;border-radius:18px;
-    background:linear-gradient(135deg,rgba(40,168,101,.35) 0%,transparent 50%,rgba(26,122,74,.25) 100%);
-    pointer-events:none;}
-  .proj-icon{font-size:2.5rem;}
-  .proj-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;color:var(--text);}
-  .proj-cat{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:600;}
-  .proj-back-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#fff;}
-  .proj-back-desc{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.65;}
-  .proj-result{font-size:.75rem;font-weight:700;background:var(--grad);color:#fff;padding:5px 16px;border-radius:20px;letter-spacing:.04em;}
+  .proj-card::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(40,168,101,.10) 0%,transparent 40%,rgba(26,122,74,.18) 100%);
+    pointer-events:none;z-index:1;
+  }
+  .proj-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(26,122,74,.18);}
+  .proj-card-front{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:10px;
+    padding:28px;text-align:center;z-index:2;
+    transition:transform .42s cubic-bezier(.4,0,.2,1);
+  }
+  .proj-card:hover .proj-card-front{transform:translateY(-110%);}
+  .proj-card-overlay{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:12px;
+    padding:28px;text-align:center;z-index:3;
+    background:linear-gradient(145deg,#0b2418 0%,#0e2e1e 100%);
+    transform:translateY(101%);
+    transition:transform .42s cubic-bezier(.4,0,.2,1);
+  }
+  .proj-card-overlay::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(40,168,101,.30) 0%,transparent 55%,rgba(26,122,74,.22) 100%);
+    pointer-events:none;
+  }
+  .proj-card:hover .proj-card-overlay{transform:translateY(0);}
+  .proj-icon{font-size:2.5rem;position:relative;z-index:1;}
+  .proj-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;color:var(--text);position:relative;z-index:1;}
+  .proj-cat{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:600;position:relative;z-index:1;}
+  .proj-back-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#fff;position:relative;z-index:1;}
+  .proj-back-desc{font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.65;position:relative;z-index:1;}
+  .proj-result{font-size:.75rem;font-weight:700;background:var(--grad);color:#fff;padding:5px 16px;border-radius:20px;letter-spacing:.04em;position:relative;z-index:1;}
 
   /* ── REVIEWS ── */
   #reviews{background:var(--surface);}
@@ -608,12 +619,78 @@
   <h2 class="sec-title reveal">Recent Projects</h2>
   <p class="sec-sub reveal">Hover each card to reveal the results we delivered for our clients.</p>
   <div class="projects-grid">
-    <div class="flip-card reveal"><div class="flip-inner"><div class="flip-front"><div class="proj-icon">👗</div><div class="proj-title">FashionDrop Store</div><div class="proj-cat">Fashion & Apparel</div></div><div class="flip-back"><div class="proj-back-title">FashionDrop</div><div class="proj-back-desc">Full store build with custom theme, product pages, and marketing funnel setup from scratch.</div><div class="proj-result">+320% Revenue in 90 days</div></div></div></div>
-    <div class="flip-card reveal"><div class="flip-inner"><div class="flip-front"><div class="proj-icon">🏠</div><div class="proj-title">HomeBliss Decor</div><div class="proj-cat">Home & Lifestyle</div></div><div class="flip-back"><div class="proj-back-title">HomeBliss</div><div class="proj-back-desc">Redesigned store with SEO overhaul and optimised product pages. Organic traffic tripled.</div><div class="proj-result">+200% Organic Traffic</div></div></div></div>
-    <div class="flip-card reveal"><div class="flip-inner"><div class="flip-front"><div class="proj-icon">💪</div><div class="proj-title">FitCore Supplements</div><div class="proj-cat">Health & Fitness</div></div><div class="flip-back"><div class="proj-back-title">FitCore</div><div class="proj-back-desc">Winning product research + Meta Ads campaign that turned a new store into a six-figure brand.</div><div class="proj-result">$100K in First Month</div></div></div></div>
-    <div class="flip-card reveal"><div class="flip-inner"><div class="flip-front"><div class="proj-icon">🐾</div><div class="proj-title">PawPerfect Shop</div><div class="proj-cat">Pet Accessories</div></div><div class="flip-back"><div class="proj-back-title">PawPerfect</div><div class="proj-back-desc">Store creation with upsell app integrations and abandoned cart automation.</div><div class="proj-result">68% Repeat Purchase Rate</div></div></div></div>
-    <div class="flip-card reveal"><div class="flip-inner"><div class="flip-front"><div class="proj-icon">💻</div><div class="proj-title">TechGadget Hub</div><div class="proj-cat">Electronics</div></div><div class="flip-back"><div class="proj-back-title">TechGadget Hub</div><div class="proj-back-desc">Full Shopify redesign with speed optimisation. Load time dropped, conversion rate jumped.</div><div class="proj-result">+4.2% Conversion Rate</div></div></div></div>
-    <div class="flip-card reveal"><div class="flip-inner"><div class="flip-front"><div class="proj-icon">✨</div><div class="proj-title">GlowSkin Beauty</div><div class="proj-cat">Beauty & Skincare</div></div><div class="flip-back"><div class="proj-back-title">GlowSkin</div><div class="proj-back-desc">Product page optimisation + email marketing setup. Average order value doubled in 60 days.</div><div class="proj-result">2× Average Order Value</div></div></div></div>
+    <div class="proj-card reveal">
+      <div class="proj-card-front">
+        <div class="proj-icon">👗</div>
+        <div class="proj-title">FashionDrop Store</div>
+        <div class="proj-cat">Fashion & Apparel</div>
+      </div>
+      <div class="proj-card-overlay">
+        <div class="proj-back-title">FashionDrop</div>
+        <div class="proj-back-desc">Full store build with custom theme, product pages, and marketing funnel setup from scratch.</div>
+        <div class="proj-result">+320% Revenue in 90 days</div>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-card-front">
+        <div class="proj-icon">🏠</div>
+        <div class="proj-title">HomeBliss Decor</div>
+        <div class="proj-cat">Home & Lifestyle</div>
+      </div>
+      <div class="proj-card-overlay">
+        <div class="proj-back-title">HomeBliss</div>
+        <div class="proj-back-desc">Redesigned store with SEO overhaul and optimised product pages. Organic traffic tripled.</div>
+        <div class="proj-result">+200% Organic Traffic</div>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-card-front">
+        <div class="proj-icon">💪</div>
+        <div class="proj-title">FitCore Supplements</div>
+        <div class="proj-cat">Health & Fitness</div>
+      </div>
+      <div class="proj-card-overlay">
+        <div class="proj-back-title">FitCore</div>
+        <div class="proj-back-desc">Winning product research + Meta Ads campaign that turned a new store into a six-figure brand.</div>
+        <div class="proj-result">$100K in First Month</div>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-card-front">
+        <div class="proj-icon">🐾</div>
+        <div class="proj-title">PawPerfect Shop</div>
+        <div class="proj-cat">Pet Accessories</div>
+      </div>
+      <div class="proj-card-overlay">
+        <div class="proj-back-title">PawPerfect</div>
+        <div class="proj-back-desc">Store creation with upsell app integrations and abandoned cart automation.</div>
+        <div class="proj-result">68% Repeat Purchase Rate</div>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-card-front">
+        <div class="proj-icon">💻</div>
+        <div class="proj-title">TechGadget Hub</div>
+        <div class="proj-cat">Electronics</div>
+      </div>
+      <div class="proj-card-overlay">
+        <div class="proj-back-title">TechGadget Hub</div>
+        <div class="proj-back-desc">Full Shopify redesign with speed optimisation. Load time dropped, conversion rate jumped.</div>
+        <div class="proj-result">+4.2% Conversion Rate</div>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-card-front">
+        <div class="proj-icon">✨</div>
+        <div class="proj-title">GlowSkin Beauty</div>
+        <div class="proj-cat">Beauty & Skincare</div>
+      </div>
+      <div class="proj-card-overlay">
+        <div class="proj-back-title">GlowSkin</div>
+        <div class="proj-back-desc">Product page optimisation + email marketing setup. Average order value doubled in 60 days.</div>
+        <div class="proj-result">2× Average Order Value</div>
+      </div>
+    </div>
   </div>
 </section>
 
